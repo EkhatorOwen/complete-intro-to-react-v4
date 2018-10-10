@@ -14,6 +14,9 @@ test('shows modal when toggleModal is called', () => {
           () => {}
         }
         />)
-        const instance = c.getInstance(); expect(instance.state.showModal).toBe(false); instance.toggleModal(); expect(instance.state.showModal).toBe(true);
+        const instance = c.getInstance(); 
+        expect(instance.state.showModal).toBe(false); 
+        instance.toggleModal();
+         expect(instance.state.showModal).toBe(true);
 
       })
