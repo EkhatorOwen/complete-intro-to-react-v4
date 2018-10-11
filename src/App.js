@@ -1,16 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Router, Link } from "@reach/router";
+import { Router} from "@reach/router";
 import pf from "petfinder-client";
+import loadable from 'react-loadable';
 import Results from "./Results";
-import Details from "./Details";
 import SearchParams from "./SearchParams";
+import Navbar from './Navbar'
 import { Provider } from "./SearchContext";
 
 const petfinder = pf({
   key: process.env.API_KEY,
   secret: process.env.API_SECRET
 });
+
+const LoadableDetails = loadable({
+  loader: () => import('./Details.js'),
+  loading(){
+    return <h1>loading split out code</h1>
+  }
+})
 
 class App extends React.Component {
   constructor(props) {
@@ -72,18 +80,11 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <header>
-          <Link to="/">Adopt Me!</Link>
-          <Link to="/search-params">
-            <span aria-label="search" role="img">
-              🔍
-            </span>
-          </Link>
-        </header>
+        <Navbar/>
         <Provider value={this.state}>
           <Router>
             <Results path="/" />
-            <Details path="/details/:id" />
+            <LoadableDetails path="/details/:id" />
             <SearchParams path="/search-params" />
           </Router>
         </Provider>
