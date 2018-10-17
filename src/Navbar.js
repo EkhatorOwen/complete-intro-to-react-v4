@@ -46,7 +46,7 @@ const Navbar = () => (
           <NavLink to="/">Adopt Me!</NavLink>
           <NavLink to="/search-params">
             <SpyGlass aria-label="search" role="img">
-              🔍
+              <span role="img" aria-label="hour glass">🔍</span>
             </SpyGlass>
           </NavLink>
     </Container>
